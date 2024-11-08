@@ -15,12 +15,26 @@ public:
 	// Sets default values for this actor's properties
 	AProjectile();
 
+	UPROPERTY(EditDefaultsOnly)
+	float lifeTime;
+
+	float currentLifeTime;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	UStaticMeshComponent* MeshComponent;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Disable();
+
+	void Enable();
+
+	void Launch(FVector direction) const;
+	
 };
